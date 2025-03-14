@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 
-function DarkModeToggle() {
+const DarkModeToggle = () => {
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', darkMode);
+  }, [darkMode]);
+
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
+    setDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('darkMode', newMode);
+      return newMode;
+    });
   };
 
   return (
-    <button onClick={toggleDarkMode} className="p-2 bg-gray-300 dark:bg-gray-700 rounded">
-      Toggle Dark Mode
+    <button onClick={toggleDarkMode} className="btn btn-toggle-mode">
+      {darkMode ? '🌙' : '🌞'}
     </button>
   );
-}
+};
 
 export default DarkModeToggle;

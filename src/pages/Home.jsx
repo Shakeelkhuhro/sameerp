@@ -1,28 +1,41 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import dpImage from "../imgs/dp.jpg";
+import "./Home.css";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', backgroundColor: '#f7fafc' }}>
-      <motion.h1
-        style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1a202c' }}
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        Hi, I'm Sameer Khuhro
-      </motion.h1>
-      <motion.p
-        style={{ color: '#4a5568', marginTop: '1rem' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        Software Engineer | React Developer | UI/UX Designer
-      </motion.p>
-      <h2>Home</h2>
-      <p>Welcome to Sameer Khuhro's portfolio.</p>
-    </div>
+    <section className="hero-section">
+      <div className="hero-content">
+        <h1>Hi, I'm Sameer Khuhro</h1>
+        <p className="hero-description">
+          A passionate <strong>React Developer & UI/UX Designer</strong> with expertise in 
+          <strong> MERN Stack, React Native, Firebase, and Adobe XD</strong>. 
+          I specialize in crafting high-quality, user-friendly web and mobile applications.
+        </p>
+        <img src={dpImage} alt="Sameer Khuhro" className="hero-image" />
+        
+        <div className="hero-buttons">
+          <button className="btn btn-primary" onClick={() => navigate("/projects")}>
+            View My Work
+          </button>
+          <button className="btn btn-secondary" onClick={() => navigate("/contact")}>
+            Hire Me
+          </button>
+        </div>
+
+        <div className="hero-freelancing">
+          <p>
+            🚀 Open for freelance projects! Let's build something amazing together.
+          </p>
+          <button className="btn btn-upwork" onClick={() => window.open("https://www.upwork.com/freelancers/~0140aae850a43a3d60", "_blank")}>
+            Hire Me on Upwork
+          </button>
+        </div>
+      </div>
+    </section>
   );
 };
 
